@@ -20,8 +20,8 @@ class ParserContainer
     PageTracker.new
   end
 
-  register  'logger' do
-    Logger.new STDOUT
+  register 'logger' do
+    Logger.new $stdout
   end
 end
 

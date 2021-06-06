@@ -54,15 +54,8 @@ module CmdOptionParser
   end
 
   def self.specify_log_level(opts, options)
-    log_levels = [
-        'unknown',
-        'fatal',
-        'error',
-        'warn',
-        'info',
-        'debug',
-    ]
-    opts.on('-l', '--log-level LOG_LEVEL', log_levels, 
+    log_levels = %w[unknown fatal error warn info debug]
+    opts.on('-l', '--log-level LOG_LEVEL', log_levels,
             'Specify Log Level') do |v|
       options['log-level'] = v.downcase
     end

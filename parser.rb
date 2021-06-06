@@ -23,5 +23,9 @@ begin
   puts "sorted_unique_visits #{sorted_unique_visits}"
 rescue StandardError => e
   logger.error e.message
-  logger.debug e.backtrace
+  logger.debug '----------------------------'
+  e.backtrace.each do |traceline|
+    logger.debug traceline
+  end
+  logger.debug '----------------------------'
 end
