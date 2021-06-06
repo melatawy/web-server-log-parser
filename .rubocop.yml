@@ -1,0 +1,71 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop/cop/internal_affairs
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.5
+  NewCops: disable
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'spec/smoke_tests/**/*.rb'
+
+# See https://github.com/rubocop/rubocop/issues/6410
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 80 # default: 120
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Lint/BooleanSymbol:
+  Exclude:
+    - lib/rubocop/cop/rspec/expect_actual.rb
+    - lib/rubocop/cop/rspec/focus.rb
+
+Lint/InterpolationCheck:
+  Exclude:
+    - spec/**/*.rb
+
+# When the `edge-rubocop` build is red, and we decide to disable the cop,
+# the rest of the builds become red if the cop has not yet been released.
+# Instead of waiting for RuboCop releases to make `edge-rubocop` green,
+# we prefer keeping disable directives here and there and check if they
+# are still needed once in a while.
+Lint/RedundantCopDisableDirective:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - rubocop-rspec.gemspec
+    - Rakefile
+    - '**/*.rake'
+    - spec/**/*.rb
+
+Naming/FileName:
+  Exclude:
+    - lib/rubocop-rspec.rb
+
+RSpec/ExampleLength:
+  Max: 30
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/project/**/*.rb
+
+Style/FormatStringToken:
+  Exclude:
+    - spec/rubocop/**/*.rb
+
+RSpec/MultipleExpectations:
+  Enabled: false
